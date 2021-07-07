@@ -2,8 +2,6 @@ import pandas as pd
 from visual_automata.fa.dfa import VisualDFA
 from automata.fa.dfa import DFA
 import streamlit as st
-from PIL import Image
-
 
 #DFA regex1
 dfa1 = DFA(
@@ -65,9 +63,8 @@ final_states={'q9', 'q10', 'q11', 'q12', 'q13','q14', 'q15', 'q16', 'q17'}
 ###################################################################################################
 
 st.set_page_config(
-    page_title="Automaton",
+    page_icon="🦈",
     layout="wide",
-    initial_sidebar_state="expanded",
  )
 st.title("Automata")
 
