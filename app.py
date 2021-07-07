@@ -1,10 +1,7 @@
-
 from automata.fa.dfa import DFA
-from streamlit.elements.map import _ZOOM_LEVELS
 from visual_automata.fa.dfa import VisualDFA
 import pandas as pd 
 import streamlit as sl
-from PIL import Image
 
 #DFA regex1
 dfa1 = DFA(
