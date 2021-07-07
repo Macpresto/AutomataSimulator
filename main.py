@@ -1,7 +1,7 @@
 from automata.fa.dfa import DFA
 from visual_automata.fa.dfa import VisualDFA
 import pandas as pd 
-import streamlit as sl
+import streamlit as st
 
 #DFA regex1
 dfa1 = DFA(
@@ -62,35 +62,34 @@ final_states={'q9', 'q10', 'q11', 'q12', 'q13','q14', 'q15', 'q16', 'q17'}
 #                                     USER INTERFACE                                              #
 ###################################################################################################
 
-sl.set_page_config(
+st.set_page_config(
     page_title="Automaton",
-    page_icon="🦈",
     layout="wide",
     initial_sidebar_state="expanded",
  )
-sl.title("Automata")
+st.title("Automata")
 
 #varaible declaration for regular expressions
 reg_ex1 = '(bab)*(b+a)(bab+aba)(a+b)*(aa+bb)*(b+a+bb)(a+b)*(aa+bb)'
 rex_ex2 = '(1+0)*(11+00)(00+11)*(1+0+11)(1+0+11)*(101+111)(101+111)*(1+0*+11)(1+0*+11)'
 
 #select box for regular expression
-input_box = sl.selectbox("Select Expression:", (reg_ex1, rex_ex2)) 
+input_box = st.selectbox("Select Expression:", (reg_ex1, rex_ex2)) 
 
 # Page Control
 # User input Box
 
 
 #cfg image
-dfa_slot = sl.empty()
-col3, col4 = sl.beta_columns(2)
-cfg_slot = col3.empty()
+dfa_stot = st.empty()
+col3, col4 = st.beta_columns(2)
+cfg_stot = col3.empty()
 
 
 if input_box == reg_ex1:
     dfa = dfa1 
-    with cfg_slot.beta_expander("CFG", expanded = True):
-        sl.write("""
+    with cfg_stot.beta_expander("CFG", expanded = True):
+        st.write("""
          S -> PQRTUVXY\n
          P -> babP|λ\n
          Q -> b|a\n
@@ -104,8 +103,8 @@ if input_box == reg_ex1:
 
 else:
     dfa = dfa2
-    with cfg_slot.beta_expander("CFG", expanded = True):
-        sl.write("""
+    with cfg_stot.beta_expander("CFG", expanded = True):
+        st.write("""
          S -> PQRTUVWYY\n
          P -> 1P|0P|λ\n
          Q -> 11|00\n
@@ -126,10 +125,10 @@ if not user_input:
 submit = form.form_submit_button(label="Simulate")
 
 visual_dfa = VisualDFA(dfa)
-with sl.form("dfa_form"):
-    dfa_slot.write(visual_dfa.show_diagram())
+with st.form("dfa_form"):
+    dfa_stot.write(visual_dfa.show_diagram())
 
-#sl.write(type(submit))
+#st.write(type(submit))
 if user_input:
     try:
         if submit:
@@ -139,10 +138,10 @@ if user_input:
                 col4.error('Invalid!')
                 
             
-            col1, col2 = sl.beta_columns(2)
+            col1, col2 = st.beta_columns(2)
             visual_dfa = VisualDFA(dfa)
             str_user_input = str(user_input)
-            dfa_slot.write(visual_dfa.show_diagram(str_user_input))
+            dfa_stot.write(visual_dfa.show_diagram(str_user_input))
 
             dfa1_final_states =['*q13', '*q14']
             dfa2_final_states =['*q9', '*q10', '*q11', '*q12', '*q13','*q14', '*q15',
@@ -166,7 +165,7 @@ if user_input:
                     listy.append("Finished")
                 else:
                     listy.append("DID NOT FINISH")
-                    #sl.write(str(x.iloc[index-1,2]))
+                    #st.write(str(x.iloc[index-1,2]))
             elif dfa == dfa2:
                 if x.iloc[index-1,2] in dfa2_final_states:
                     listy.append("Finished")
@@ -183,7 +182,7 @@ if user_input:
 
             
     except:
-        sl.write(" ")
+        st.write(" ")
 
 else:
-    sl.write(" ")
+    st.write(" ")
