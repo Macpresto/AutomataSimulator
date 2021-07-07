@@ -1,3 +1,4 @@
+
 from automata.fa.dfa import DFA
 from visual_automata.fa.dfa import VisualDFA
 import pandas as pd 
@@ -183,11 +184,7 @@ if user_input:
 
             
     except:
-        print('hello')
+        sl.write(" ")
 
 else:
-    print('empty')
-
-
-
-
+    sl.write(" ")
