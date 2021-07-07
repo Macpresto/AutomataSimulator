@@ -1,7 +1,9 @@
-from automata.fa.dfa import DFA
+import pandas as pd
 from visual_automata.fa.dfa import VisualDFA
-import pandas as pd 
+from automata.fa.dfa import DFA
 import streamlit as st
+from PIL import Image
+
 
 #DFA regex1
 dfa1 = DFA(
